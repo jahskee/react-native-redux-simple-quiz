@@ -1,13 +1,14 @@
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 
-import { Header, Text, Button } from "react-native-elements";
+import { Text, Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import { updateState, updateTimer } from "../redux/actions";
+// import { updateState, updateTimer } from "../redux/actions";
 import { Color } from "../utils/config";
+import { commonStyles } from "../styles/common-styles.js";
 
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -23,8 +24,14 @@ class HomeScreen extends React.Component {
     };
   };
 
+  navToQuizScreen = () => {
+    this.props.navigation.navigate("Quiz");
+  }
+
   render() {
+    console.log(this.props);
     return (
+      
       <View style={styles.container}>
         <Text style={styles.title} h4>
           Welcome to the {"\n"}
@@ -41,18 +48,10 @@ class HomeScreen extends React.Component {
           Can you score 100%?
         </Text>
 
-        <Button
-          icon={<Icon name="arrow-right" size={15} color="white" />}
-          title="BEGIN"
-          buttonStyle={{
-            backgroundColor: "rgba(92, 99,216, 1)",
-            width: 300,
-            height: 45,
-            borderColor: "transparent",
-            borderWidth: 0,
-            borderRadius: 5
-          }}
+        <Button onPress={this.navToQuizScreen}  buttonStyle={commonStyles.button}
+          title="BEGIN"         
         />
+
       </View>
     );
   }
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 5,
     paddingTop: 20,
-    paddingBottom: 10,
+    paddingBottom: 150,
     paddingLeft: 10
   },
   title: {}

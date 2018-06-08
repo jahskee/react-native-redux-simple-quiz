@@ -1,7 +1,8 @@
 import { createStore } from "redux";
 
 import {
-  updateQuestions,
+  loadQuestions,
+  updateData,
 } from "./actions";
 
 import reducer from "./reducer";
@@ -14,11 +15,12 @@ const store = createStore(reducer);
 
 // load initial chunk of data to redux store
 (async () => {
-
-  // https://api.stratteos.us/api/questions/science
   const questions = await API.getQuestions();
- // console.log(questions.results)
-  store.dispatch(updateQuestions(questions));
+  store.dispatch(loadQuestions(questions));
+
+  store.dispatch(updateData({
+    questionCtr: 0
+  }));
   console.log(store.getState());
 })();
 

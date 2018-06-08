@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./components/screens/HomeScreen";
 import QuizScreen from "./components/screens/QuizScreen";
-import ResultScreen from "./components/screens/ResultScreen";
+import ScoreScreen from "./components/screens/ScoreScreen";
 import SettingScreen from "./components/screens/SettingScreen";
 
 
@@ -26,7 +26,7 @@ const MainStack = createStackNavigator(
   {
     Home: HomeScreen,
     Quiz: QuizScreen,
-    Result: ResultScreen,
+    Score: ScoreScreen,
     Setting: SettingScreen
   },
   {
@@ -36,8 +36,7 @@ const MainStack = createStackNavigator(
       headerStyle: {
         backgroundColor: "#fff"
       }
-    },
-    
+    },    
   }
 );
 
@@ -55,8 +54,6 @@ const MainTabs = createMaterialBottomTabNavigator(
     Setting: SettingScreen
   },
   {
-  //  activeTintColor: '#f0edf6',
-    //inactiveTintColor: '#3e2465',
     barStyle: { backgroundColor: 'lightblue' },
   }
 );
