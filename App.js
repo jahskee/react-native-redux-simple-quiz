@@ -11,10 +11,10 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { Provider } from "react-redux";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
-import HomeScreen from "./components/screens/HomeScreen";
-import QuizScreen from "./components/screens/QuizScreen";
-import ScoreScreen from "./components/screens/ScoreScreen";
-import SettingScreen from "./components/screens/SettingScreen";
+import HomeScreen from "./components/screens/home/HomeScreen";
+import QuizScreen from "./components/screens/quiz/QuizScreen";
+import ScoreScreen from "./components/screens/score/ScoreScreen";
+import SettingScreen from "./components/screens/setting/SettingScreen";
 
 
 import Config, { Color } from "./components/utils/config";

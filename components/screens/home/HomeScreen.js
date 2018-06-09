@@ -6,18 +6,14 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-// import { updateState, updateTimer } from "../redux/actions";
-import { Color } from "../utils/config";
-import { commonStyles } from "../styles/common-styles.js";
+import { Color } from "../../utils/config";
+import { commonStyles } from "../../styles/common-styles.js";
 
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Home",
-      //headerTintColor: Color.primary,
-      headerStyle: {
-        // backgroundColor: '#f4511e',
-      },
+      headerTintColor: Color.primary,
       headerTitleStyle: {
         fontWeight: "bold"
       }
@@ -29,9 +25,7 @@ class HomeScreen extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    return (
-      
+    return (      
       <View style={styles.container}>
         <Text style={styles.title} h4>
           Welcome to the {"\n"}
@@ -67,9 +61,13 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingTop: 20,
     paddingBottom: 150,
-    paddingLeft: 10
+    paddingLeft: 10,   
+    
   },
-  title: {}
+  title :{
+    color: '#505050',
+    textAlign: 'center',
+  }
 });
 
 // ---------- Setup Redux -------------

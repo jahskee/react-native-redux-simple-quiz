@@ -1,3 +1,5 @@
+import { addKeys, escapeUnicode } from "../utils/utils";
+
 API = {};
 
 API.getQuestions = async () => {
@@ -6,8 +8,13 @@ API.getQuestions = async () => {
     throw `Server api error reponse.status=${response.status}`;
   questions = await response.json();
   
-  questions.results = questions.results.map(question => ({...question, Answer: null}))
+  questions.results = questions.results
+                        .map(question => ({...question, Answer: null}))
+                        .map(addKeys)
+                        .map(question =>  ({...question, question: question.question.escapeUnicode().trim()}))
   return questions.results;
 };
+
+String.prototype.escapeUnicode = escapeUnicode();
 
 export default API;

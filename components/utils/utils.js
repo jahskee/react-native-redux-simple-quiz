@@ -8,12 +8,12 @@ export function escapeUnicode(){
     };
   
     return function() {
-      xescape = this.replaceAll('&quot;','\"')
+       return this.replaceAll('&quot;','\"')
                     .replaceAll('&epsilon;','ϵ')
                     .replaceAll('&Phi;','ϕ')
-                    .replaceAll('&#039;', '\'');                
-      console.log(JSON.stringify(xescape));  
-      return xescape;
+                    .replaceAll('&ocirc;','Û')
+                    .replaceAll('&Aring','Å')
+                    .replaceAll('&#039;', '\'');       
     }
     
   }
