@@ -27,6 +27,7 @@ export const clearAnswers = () => ({
   payload: [],
 });
 
+/*jshint esversion: 6 */
 // action creators
 export const updateData = data => ({
   type: UPDATE_DATA,

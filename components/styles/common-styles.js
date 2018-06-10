@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import { StyleSheet } from "react-native";
 
 export const commonStyles =  StyleSheet.create({

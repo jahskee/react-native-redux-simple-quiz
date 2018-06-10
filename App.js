@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import {
@@ -7,7 +8,6 @@ import {
 } from "react-navigation";
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-
 import { Provider } from "react-redux";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -16,9 +16,9 @@ import QuizScreen from "./components/screens/quiz/QuizScreen";
 import ScoreScreen from "./components/screens/score/ScoreScreen";
 import SettingScreen from "./components/screens/setting/SettingScreen";
 
+import { myStyle } from "./components/styles/myStyle";
 
-import Config, { Color } from "./components/utils/config";
-import store from "./components/redux/store";
+import store from "./components/redux/store/store";
 
 global.log = console.log;
 
@@ -32,9 +32,9 @@ const MainStack = createStackNavigator(
   {
     initialRouteName: "Home",
     navigationOptions: {
-      headerTintColor: Color.primary,
+      headerTintColor: myStyle.primaryColor,
       headerStyle: {
-        backgroundColor: "#fff"
+        backgroundColor: myStyle.topBarColor,       
       }
     },    
   }
@@ -45,7 +45,7 @@ MainStack.navigationOptions = {
     <Ionicons
       name={`ios-home${focused ? "" : "-outline"}`}
       size={25}
-      color={`${focused ? Color.primary : "red"}`}
+      color={`${focused ? myStyle.primaryColor : "red"}`}
     />
 };
 const MainTabs = createMaterialBottomTabNavigator(
@@ -54,21 +54,9 @@ const MainTabs = createMaterialBottomTabNavigator(
     Setting: SettingScreen
   },
   {
-    barStyle: { backgroundColor: 'lightblue' },
+    barStyle: { backgroundColor: myStyle.bottomBarColor },
   }
 );
-/*
-const MainTabs = createBottomTabNavigator(
-  {
-    Home: MainStack,
-    Setting: SettingScreen
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: Color.primary
-    }
-  }
-);*/
 
 const AppNavigator = createSwitchNavigator({
   Main: MainTabs

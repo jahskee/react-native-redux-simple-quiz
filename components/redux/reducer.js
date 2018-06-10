@@ -1,4 +1,6 @@
+/*jshint esversion: 6 */
 import { combineReducers } from "redux";
+import { addKeys } from "../utils/utils";
 
 import {
   LOAD_QUESTIONS,
@@ -25,6 +27,7 @@ const answersReducer = (prevAnswers = [], action) => {
   } else if (action.type === CLEAR_ANSWERS) {
     return [];
   }
+
   return prevAnswers;
 };
 
@@ -34,6 +37,8 @@ const dataReducer = (prevData = {}, action) => {
   return prevData;
 };
 
+ /* Keep the reducer clean - do not mutate the original state. */
+  // const nextState = Object.assign({}, state);
 const reducer = combineReducers({
     questions: questionsReducer,
     answers: answersReducer,

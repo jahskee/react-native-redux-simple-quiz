@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 import { addKeys, escapeUnicode } from "../utils/utils";
 
 API = {};
@@ -11,7 +12,7 @@ API.getQuestions = async () => {
   questions.results = questions.results
                         .map(question => ({...question, Answer: null}))
                         .map(addKeys)
-                        .map(question =>  ({...question, question: question.question.escapeUnicode().trim()}))
+                        .map(question =>  ({...question, question: question.question.escapeUnicode().trim()}))   
   return questions.results;
 };
 

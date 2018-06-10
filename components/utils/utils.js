@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 export const addKeys = (val, key) => ({ key: "" + key, ...val });
 
 export function escapeUnicode(){
@@ -14,7 +15,6 @@ export function escapeUnicode(){
                     .replaceAll('&ocirc;','Û')
                     .replaceAll('&Aring','Å')
                     .replaceAll('&#039;', '\'');       
-    }
-    
+    }    
   }
   

@@ -1,28 +1,41 @@
-import React from 'react';
-import { View, StyleSheet } from "react-native";
+/*jshint esversion: 6 */
+import React from "react";
+import { View, StyleSheet, Image } from "react-native";
 import { Text } from "react-native-elements";
+import { myStyle } from "../../../styles/myStyle";
+import { styles } from "./ScoreRow.styles";
 
-
-const ScoreRow = props => {  
-    return ( 
-        <View style={styles.container}>
-          <Text style={{fontSize: 20,  color: '#505050'}}> {props.answer.question} </Text>
+function ScoreRow(props){
+    return (
+      <View style={styles.container}>
+        <View style={{ flexDirection: "row" }}>
+          <Text style={styles.numbering}>{props.answer.index + 1}.</Text>
+         
+          <Text style={styles.question}>{props.answer.question} </Text>
+        
         </View>
-      )
-};
+        <View style={{ flexDirection: "row" }}>
+              <Image
+                style={styles.isCorrectWrongImage}
+                source={{
+                  uri: getImage({ isCorrect: props.answer.isCorrect })
+                }}
+              />
+              <Text style={styles.correctAnswer}>
+                Correct answer is { props.answer.correct }.
+              </Text>
+            </View>
+      </View>
+    );
 
-// --------- Styling ----------
-const styles = StyleSheet.create({
-  container: {
-    paddingLeft: 30,
-    paddingRight: 20,
-    paddingTop: 10,   
-    paddingBottom: 10,
-    marginBottom: 5,
-    borderStyle: 'solid',
-    borderColor: 'darkgray',
-    backgroundColor: 'white',
-    borderWidth: 1,   
-  }
-});
-export default ScoreRow
+  // get the proper image icon based on correct or wrong answer
+  function getImage(isCorrect) {
+    const imageCorrect =
+      "https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/tick-512.png";
+    const imageWrong =
+      "https://cdn2.iconfinder.com/data/icons/circel-ui/238/28-512.png";
+    return isCorrect.isCorrect ? imageCorrect : imageWrong;
+  };
+}
+
+export default ScoreRow;

@@ -1,37 +1,47 @@
+/*jshint esversion: 6 */
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import { Text, Button } from "react-native-elements";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import { resetQuestions, clearAnswers, updateData } from "../../redux/actions";
-import { Color } from "../../utils/config";
+import {
+  resetQuestions,
+  clearAnswers,
+  addKeysToAnswers,
+  updateData
+} from "../../redux/actions";
 import { commonStyles } from "../../styles/common-styles";
-import { addKeys } from "../../utils/utils";
 
-import ScoreRow from './parts/ScoreRow'
+import ScoreRow from "./parts/ScoreRow";
+import { myStyle } from "../../styles/myStyle";
+import { addKeys } from "../../utils/utils";
+import { styles } from "./ScoreScreen.styles";
 
 class ScoreScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Result",
-      headerTintColor: Color.primary
+      headerTintColor: myStyle.primaryColor
     };
   };
 
   render() {
     return (
       <View style={styles.container}>
-         <Text style={{textAlign: 'center', color: '#505050', fontSize: 20, fontWeight: 'bold'}}>You Scored {"\n"} { this.props.data.score } / 10</Text>
-        <FlatList style={{marginTop: 10}}
+        <Text style={styles.youScored}>        
+          You Scored {"\n"} {this.props.data.score} of 10
+        </Text>
+        <FlatList
+          style={{ marginTop: 10 }}
           renderItem={obj => <ScoreRow answer={obj.item} />}
-          data={this.props.answers}
+          data={this.props.answers.map(addKeys)}
         />
 
         <Button
           onPress={this.navPlayAgain}
           buttonStyle={commonStyles.button}
-          style ={{marginTop: 10, marginBottom: 10}}
+          style={{ marginTop: 10, marginBottom: 10 }}
           title="PLAY AGAIN?"
         />
       </View>
@@ -40,11 +50,11 @@ class ScoreScreen extends React.Component {
 
   componentDidMount() {
     // compute total score
-    const score = this.props.answers.reduce((sum, answer)=> {
-      sum = isNaN(sum)? 0 : sum;      
-      return (answer.isCorrect ===true? sum + 1 : sum);            
+    const score = this.props.answers.reduce((sum, answer) => {
+      sum = isNaN(sum) ? 0 : sum;
+      return answer.isCorrect === true ? sum + 1 : sum;
     });
-    this.props.updateData({score})   
+    this.props.updateData({ score });
   }
 
   navPlayAgain = async () => {
@@ -56,25 +66,11 @@ class ScoreScreen extends React.Component {
   };
 }
 
-// --------- Styling ----------
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    padding: 5,
-    paddingTop: 5,
-    paddingBottom: 10,
-    paddingLeft: 10, 
-  }
-});
-
 // ---------- Setup Redux -------------
 const mapStateToProps = state => ({
   questions: state.questions,
-  answers: state.answers.map(addKeys),
-  data: state.data,
+  answers: state.answers,
+  data: state.data
 });
 
 export default connect(
