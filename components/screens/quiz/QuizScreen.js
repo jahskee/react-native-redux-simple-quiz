@@ -5,7 +5,11 @@ import { Text, Button } from "react-native-elements";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import { updateData, addAnswer } from "../../redux/actions";
+import {  
+  updateData, 
+  addAnswer }
+from "../../redux/actions";
+
 import { commonStyles } from "../../styles/common-styles.js";
 
 import { myStyle } from "../../styles/myStyle"
@@ -53,12 +57,12 @@ class QuizScreen extends React.Component {
     );
   }
 
-  selectTrue = () => {
-    this.questionAnswered(true);
+  selectTrue = async () => {
+    await this.questionAnswered(true);
   };
 
-  selectFalse = () => {
-    this.questionAnswered(false);
+  selectFalse = async () => {
+    await this.questionAnswered(false);
   };
 
   questionAnswered = answer => {
@@ -72,10 +76,9 @@ class QuizScreen extends React.Component {
     const isCorrect = answer === correct ? true : false; 
 
     if(this.props.answers.length <= 9) {     
-      this.props.addAnswer({ index, question, answer, correct, isCorrect });
+       this.props.addAnswer({ index, question, answer, correct, isCorrect });
     }
  
-    console.log(this.props.answers)
     if (index >= 9) {
       this.props.navigation.navigate("Score");
       return;
@@ -95,6 +98,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
+ 
     updateData,
     addAnswer,
   }

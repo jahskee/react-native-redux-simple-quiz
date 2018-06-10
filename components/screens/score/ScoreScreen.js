@@ -5,7 +5,7 @@ import { Text, Button } from "react-native-elements";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
-import {
+import { 
   resetQuestions,
   clearAnswers,
   addKeysToAnswers,
@@ -48,21 +48,22 @@ class ScoreScreen extends React.Component {
     );
   }
 
-  componentDidMount() {
-    // compute total score
-    const score = this.props.answers.reduce((sum, answer) => {
-      sum = isNaN(sum) ? 0 : sum;
-      return answer.isCorrect === true ? sum + 1 : sum;
-    });
+  componentDidMount() {   
+    let score = 0;
+    this.props.answers.forEach(answer => {
+      if (answer.isCorrect) score++;
+    })  
     this.props.updateData({ score });
   }
 
-  navPlayAgain = async () => {
-    this.props.updateData({ questionIndex: 0 });
-    this.props.navigation.navigate("Quiz");
+  navPlayAgain = async () => {  
     const questions = await API.getQuestions();
     this.props.resetQuestions(questions);
     this.props.clearAnswers();
+    
+    this.props.updateData({ questionIndex: 0 });
+    this.props.navigation.navigate("Quiz");
+    return;  
   };
 }
 
