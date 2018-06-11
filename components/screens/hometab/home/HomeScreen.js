@@ -8,11 +8,11 @@ import {
   resetQuestions,
   clearAnswers, 
   updateData,
-} from "../../redux/actions";
+} from "../../../redux/action/actions";
 import { connect } from "react-redux";
 
-import { commonStyles } from "../../_styles/commonStyles.js";
-import { myStyle } from "../../_styles/myStyle";
+import { commonStyles } from "../../../_styles/commonStyles.js";
+import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./HomeScreen.styles.js";
 
 class HomeScreen extends React.Component {
@@ -75,7 +75,7 @@ class HomeScreen extends React.Component {
     this.props.clearAnswers();
     this.props.updateData({ questionIndex: 0 });
 
-    this.props.navigation.navigate("Quiz");
+    this.props.navigation.navigate("QuizScreen");
   };
 }
 

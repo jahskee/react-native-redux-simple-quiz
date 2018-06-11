@@ -6,19 +6,15 @@ import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 
-import { myStyle } from "../../_styles/myStyle";
+import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./SettingScreen.styles";
 
 class SettingScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: "Settings",
-    tabBarIcon: ({ focused, tintColor }) => (
-      <Ionicons
-        name={`ios-settings${focused ? "" : "-outline"}`}
-        size={25}
-        color={myStyle.primaryColor}
-      />
-    )
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: "Settings",
+      headerTintColor: myStyle.primaryColor
+    };
   };
 
   render() {

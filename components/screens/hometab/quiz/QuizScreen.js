@@ -8,10 +8,10 @@ import { ConfirmDialog } from "react-native-simple-dialogs";
 import { 
   updateData,
   addAnswer
-} from "../../redux/actions";
+} from "../../../redux/action/actions";
 
-import { commonStyles } from "../../_styles/commonStyles.js";
-import { myStyle } from "../../_styles/myStyle";
+import { commonStyles } from "../../../_styles/commonStyles.js";
+import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./QuizScreen.styles.js";
 
 class QuizScreen extends React.Component {
@@ -30,15 +30,15 @@ class QuizScreen extends React.Component {
     return (
       <View style={styles.container}>
         <View>
-          <Text style={styles.top}>
+          <Text style={styles.subTitle}>
             {this.props.questions[this.props.data.questionIndex].category}
           </Text>
-          <Text style={styles.questionTrack}>
+          <Text style={styles.subTitle}>
             {this.props.data.questionIndex + 1 + " / 10"}
           </Text>
         </View>
         <View style={styles.questionCard}>
-          <Text style={styles.question}>
+          <Text style={styles.questionText}>
             {this.props.questions[this.props.data.questionIndex].question}
           </Text>
         </View>
@@ -81,7 +81,7 @@ class QuizScreen extends React.Component {
     }
 
     if (index >= 9) {
-      this.props.navigation.navigate("Score");
+      this.props.navigation.navigate("ScoreScreen");
       return;
     } else {
       this.props.updateData({ questionIndex: index + 1 });

@@ -10,13 +10,13 @@ import {
   clearAnswers,
   addKeysToAnswers,
   updateData
-} from "../../redux/actions";
+} from "../../../redux/action/actions";
 
-import ScoreRow from "./parts/ScoreRow";
-import { addKeys } from "../../utils/utils";
+import ScoreRow from "./blocks/ScoreRow";
+import { addKeys } from "../../../utils/utils";
 
-import { commonStyles } from "../../_styles/commonStyles";
-import { myStyle } from "../../_styles/myStyle";
+import { commonStyles } from "../../../_styles/commonStyles";
+import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./ScoreScreen.styles";
 
 class ScoreScreen extends React.Component {
@@ -30,8 +30,8 @@ class ScoreScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.youScored}>
-          You Scored {"\n"} {this.props.data.score} of 10
+        <Text style={styles.subTitle}>
+          You Scored {"\n"} {this.props.data.score} out of 10
         </Text>
         <FlatList
           style={{ marginTop: 10 }}
@@ -63,7 +63,7 @@ class ScoreScreen extends React.Component {
     this.props.clearAnswers();
     this.props.updateData({ questionIndex: 0 });
 
-    this.props.navigation.navigate("Quiz");
+    this.props.navigation.navigate("QuizScreen");
     return;
   };
 }

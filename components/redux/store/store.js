@@ -4,8 +4,8 @@ import createSagaMiddleware from 'redux-saga';
 
 import { createLogger } from 'redux-logger';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { loadQuestions, updateData } from "../actions";
-import rootReducer from "../reducer";
+import { loadQuestions, updateData } from "../action/actions";
+import rootReducer from "../reducer/reducer";
 import API from "../../api-client/question";
 
 

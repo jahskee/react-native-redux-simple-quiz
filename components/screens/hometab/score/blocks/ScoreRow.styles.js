@@ -1,19 +1,20 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../../_styles/myStyle"
+import { myStyle } from "../../../../_styles/myStyle"
 import { StyleSheet } from "react-native";
 
 // --------- Styling ----------
 export const styles = StyleSheet.create({
     container: {
         paddingLeft: 10,
-        paddingRight: 25,
+        paddingRight: 15,
         paddingTop: 13,
         paddingBottom: 13,
         marginBottom: 0.2,
         borderStyle: "solid",
         borderColor: "darkgray",
         backgroundColor: "white",
-        borderWidth: 1
+        borderWidth: 1,
+        overflow: 'hidden'
       },
       numbering: {
         fontSize: 16,

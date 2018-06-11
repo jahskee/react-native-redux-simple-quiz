@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../_styles/myStyle"
+import { myStyle } from "../../../_styles/myStyle"
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -12,28 +12,14 @@ export const styles = StyleSheet.create({
       paddingTop: 20,
       paddingBottom: 10,
       paddingLeft: 10,
-      backgroundColor: myStyle.background,
+      backgroundColor: myStyle.backgroundDark,
     },
-    title: {
+    subTitle: {
       fontWeight: "bold",
-      fontSize: 20,
-      color: myStyle.textColor,
-    },
-    top: {
-      fontWeight: "bold",
-      fontSize: 20,
+      fontSize: 18,
       color: myStyle.textColor,
       textAlign: "center",
-    },
-    question: {
-      fontSize: 20,
-      color:myStyle.textColorDark,
-    },
-    questionTrack: {
-        textAlign: "center",
-        fontSize: 20,
-        fontWeight: "bold",
-        color: myStyle.textColor,
+      fontFamily: myStyle.subTitleFontFamily,
     },
     questionCard: {
         borderStyle: "solid",
@@ -41,6 +27,10 @@ export const styles = StyleSheet.create({
         borderColor: "darkgray",
         padding: 20,
         margin: 20,
-        backgroundColor: "white"
-    }
+        backgroundColor: "white",
+    },
+    questionText: {
+      fontSize: 20,
+      color:myStyle.textColorDark,
+    },
   });

@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../_styles/myStyle";
+import { myStyle } from "../../../_styles/myStyle";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -8,11 +8,15 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     justifyContent: "center",
- 
+    backgroundColor: myStyle.backgroundDark,
+  
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: myStyle.textColorDark,
+    color: myStyle.textColor,  
+  },
+  text: {
+    color: myStyle.textColor,
   }
 });

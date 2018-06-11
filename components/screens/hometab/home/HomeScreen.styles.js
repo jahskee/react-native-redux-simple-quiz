@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../_styles/myStyle"
+import { myStyle } from "../../../_styles/myStyle"
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -12,19 +12,19 @@ export const styles = StyleSheet.create({
      paddingTop: 20,
      paddingBottom: 50,
      paddingLeft: 10,
-     backgroundColor: myStyle.background,
+     backgroundColor: myStyle.backgroundDark,
    },
    title: {
      color: myStyle.textColor,
      textAlign: "center",
      fontWeight: 'bold',
      fontSize: 25,
-     fontFamily: 'Apple SD Gothic Neo',
+     fontFamily: myStyle.titleFontFamily,
    },
    secondary: {
      color: myStyle.textColor,
      textAlign: "center",
      fontSize: 20,
-     fontFamily: 'Apple SD Gothic Neo',
+     fontFamily: myStyle.subTitleFontFamily,
    }
  });

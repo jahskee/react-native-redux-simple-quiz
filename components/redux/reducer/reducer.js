@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 import { combineReducers } from "redux";
-import { addKeys } from "../utils/utils";
+import { addKeys } from "../../utils/utils";
 
 import {
   LOAD_QUESTIONS,
@@ -8,7 +8,7 @@ import {
   ADD_ANSWER,
   CLEAR_ANSWERS,
   UPDATE_DATA
-} from "./actions";
+} from "../action/actions";
 
 const merge = (prev, next) => Object.assign({}, prev, next);
 

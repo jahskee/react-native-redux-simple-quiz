@@ -2,7 +2,7 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { Text } from "react-native-elements";
-import { myStyle } from "../../../_styles/myStyle";
+import { myStyle } from "../../../../_styles/myStyle";
 import { styles } from "./ScoreRow.styles";
 
 function ScoreRow(props){

@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../_styles/myStyle";
+import { myStyle } from "../../../_styles/myStyle";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -12,13 +12,15 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 10,
     paddingLeft: 10,
-    backgroundColor: myStyle.background
+    backgroundColor: myStyle.backgroundDark,
+    overflow: 'hidden',
   },
-  youScored: {
-    textAlign: "center",
+  subTitle: {
+    fontWeight: "bold",
+    fontSize: 18,
     color: myStyle.textColor,
-    fontSize: 20,
-    fontWeight: "bold"
+    textAlign: "center",
+    fontFamily: myStyle.subTitleFontFamily,
   }
 });
 

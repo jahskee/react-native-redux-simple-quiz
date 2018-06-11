@@ -4,33 +4,65 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import {
   createStackNavigator,
   createSwitchNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
 } from "react-navigation";
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-
-import { Provider } from "react-redux";
-
 import Ionicons from "react-native-vector-icons/Ionicons";
-import HomeScreen from "./components/screens/home/HomeScreen";
-import QuizScreen from "./components/screens/quiz/QuizScreen";
-import ScoreScreen from "./components/screens/score/ScoreScreen";
-import SettingScreen from "./components/screens/setting/SettingScreen";
+import { Provider } from "react-redux";
+import store from "./components/redux/store/store";
 
 import { myStyle } from "./components/_styles/myStyle";
 
-import store from "./components/redux/store/store";
+import HomeScreen from "./components/screens/hometab/home/HomeScreen";
+import QuizScreen from "./components/screens/hometab/quiz/QuizScreen";
+import ScoreScreen from "./components/screens/hometab/score/ScoreScreen";
+
+import SettingScreen from "./components/screens/settingtab/setting/SettingScreen";
+
+import FontScreen from "./components/screens/fonttab/font/FontScreen";
 
 global.log = console.log;
 
-const MainStack = createStackNavigator(
+const HomeTab = createStackNavigator(
   {
-    Home: HomeScreen,
-    Quiz: QuizScreen,
-    Score: ScoreScreen,
-    Setting: SettingScreen
+    HomeScreen,
+    QuizScreen,
+    ScoreScreen,
+    SettingScreen,
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "HomeScreen",
+    navigationOptions: {
+      headerTintColor: myStyle.primaryColor,
+      headerStyle: {
+        backgroundColor: myStyle.topBarColor,       
+      }
+    },    
+  }
+);
+
+const SettingTab = createStackNavigator(
+  {  
+    SettingScreen,
+  },
+  {
+    initialRouteName: "SettingScreen",
+    navigationOptions: {
+      headerTintColor: myStyle.primaryColor,
+      headerStyle: {
+        backgroundColor: myStyle.topBarColor,       
+      }
+    },    
+  }
+);
+
+
+const FontTab = createStackNavigator(
+  {  
+    FontScreen,
+  },
+  {
+    initialRouteName: "FontScreen",
     navigationOptions: {
       headerTintColor: myStyle.primaryColor,
       headerStyle: {
@@ -41,24 +73,23 @@ const MainStack = createStackNavigator(
 );
 
 const MainTabs = createBottomTabNavigator(
-  {
-    HomeTab: MainStack,
-    SettingTab: SettingScreen
+  {    
+    Home: HomeTab,
+    Settings: SettingTab,
+    Fonts: FontTab,
   },
   {
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
-        if (routeName === 'HomeTab') {
-          iconName = `ios-home${focused ? '' : '-outline'}`;
-          
+        if (routeName === 'Home') {
+          iconName = `ios-home${focused ? '' : '-outline'}`;          
         } else if (routeName === 'Settings') {
-          iconName = `ios-aperture${focused ? '' : '-outline'}`;
-        }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
+          iconName = `ios-construct${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Fonts') {
+          iconName = `ios-american-football${focused ? '' : '-outline'}`;
+        } 
         return <Ionicons name={iconName} size={25} color={tintColor} />;
       },
     }),
