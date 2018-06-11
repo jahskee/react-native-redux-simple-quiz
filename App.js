@@ -16,7 +16,7 @@ import QuizScreen from "./components/screens/quiz/QuizScreen";
 import ScoreScreen from "./components/screens/score/ScoreScreen";
 import SettingScreen from "./components/screens/setting/SettingScreen";
 
-import { myStyle } from "./components/styles/myStyle";
+import { myStyle } from "./components/_styles/myStyle";
 
 import store from "./components/redux/store/store";
 
@@ -40,20 +40,32 @@ const MainStack = createStackNavigator(
   }
 );
 
-MainStack.navigationOptions = {
-  tabBarIcon: ({ focused, tintColor }) =>
-    <Ionicons
-      name={`ios-home${focused ? "" : "-outline"}`}
-      size={25}
-      color={`${focused ? myStyle.primaryColor : "red"}`}
-    />
-};
-const MainTabs = createMaterialBottomTabNavigator(
+const MainTabs = createBottomTabNavigator(
   {
-    Home: MainStack,
-    Setting: SettingScreen
+    HomeTab: MainStack,
+    SettingTab: SettingScreen
   },
   {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'HomeTab') {
+          iconName = `ios-home${focused ? '' : '-outline'}`;
+          
+        } else if (routeName === 'Settings') {
+          iconName = `ios-aperture${focused ? '' : '-outline'}`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Ionicons name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: '#2a5089',
+      inactiveTintColor: 'gray',
+    },
     barStyle: { backgroundColor: myStyle.bottomBarColor },
   }
 );

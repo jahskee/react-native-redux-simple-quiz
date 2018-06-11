@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
 
-import { myStyle } from "../../styles/myStyle";
+import { myStyle } from "../../_styles/myStyle";
 import { styles } from "./SettingScreen.styles";
 
 class SettingScreen extends React.Component {

@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../../styles/myStyle"
+import { myStyle } from "../../../_styles/myStyle"
 import { StyleSheet } from "react-native";
 
 // --------- Styling ----------
@@ -17,11 +17,11 @@ export const styles = StyleSheet.create({
       },
       numbering: {
         fontSize: 16,
-        color: myStyle.textColor,
+        color: myStyle.textColorDark,
       },
       question: {
         fontSize: 16,
-        color: myStyle.textColor,
+        color: myStyle.textColorDark,
         flexWrap: 'wrap',     
         marginLeft: 10,
         marginRight: 15,
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
       },
       correctAnswer: {
         fontSize: 16,
-        color: myStyle.textColor,
+        color: myStyle.textColorDark,
         paddingTop: 10,
         fontWeight: 'bold',
     

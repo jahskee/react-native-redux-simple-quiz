@@ -12,7 +12,6 @@ import API from "../../api-client/question";
 //const sagaMiddleware = createSagaMiddleware();
 //const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 const store = createStore(rootReducer);
-// then run the saga
 
 // ================ Start Initialize Store ==================
 
@@ -27,7 +26,6 @@ const store = createStore(rootReducer);
       questionIndex: 0
     })
   );
-  //console.log(store.getState());
 })();
 
 // ================ End Initialize Store ==================

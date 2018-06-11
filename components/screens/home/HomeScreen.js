@@ -4,9 +4,15 @@ import { Text, View, Image } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PropTypes from "prop-types";
+import {
+  resetQuestions,
+  clearAnswers, 
+  updateData,
+} from "../../redux/actions";
+import { connect } from "react-redux";
 
-import { commonStyles } from "../../styles/common-styles.js";
-import { myStyle } from "../../styles/myStyle";
+import { commonStyles } from "../../_styles/commonStyles.js";
+import { myStyle } from "../../_styles/myStyle";
 import { styles } from "./HomeScreen.styles.js";
 
 class HomeScreen extends React.Component {
@@ -20,6 +26,7 @@ class HomeScreen extends React.Component {
     };
   };
 
+
   config = {
     images: {
       logo:
@@ -30,6 +37,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Text style={styles.title}>
           Welcome to the {"\n"}
           Trivia Challenge!
@@ -61,9 +69,28 @@ class HomeScreen extends React.Component {
     );
   }
 
-  navToQuizScreen = () => {
+  navToQuizScreen = async () => {
+    const questions = await API.getQuestions();
+    this.props.resetQuestions(questions);
+    this.props.clearAnswers();
+    this.props.updateData({ questionIndex: 0 });
+
     this.props.navigation.navigate("Quiz");
   };
 }
 
-export default HomeScreen;
+// ---------- Setup Redux -------------
+const mapStateToProps = state => ({
+  questions: state.questions,
+  answers: state.answers,
+  data: state.data
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    resetQuestions,
+    clearAnswers, 
+    updateData,
+  }
+)(HomeScreen);

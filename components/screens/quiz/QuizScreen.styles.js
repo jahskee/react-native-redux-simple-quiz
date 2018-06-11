@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../styles/myStyle"
+import { myStyle } from "../../_styles/myStyle"
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     },
     question: {
       fontSize: 20,
-      color:myStyle.color,
+      color:myStyle.textColorDark,
     },
     questionTrack: {
         textAlign: "center",

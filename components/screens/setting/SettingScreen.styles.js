@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-import { myStyle } from "../../styles/myStyle";
+import { myStyle } from "../../_styles/myStyle";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -13,6 +13,6 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: myStyle.textColor,
+    color: myStyle.textColorDark,
   }
 });
