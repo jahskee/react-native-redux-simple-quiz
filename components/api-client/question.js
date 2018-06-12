@@ -18,7 +18,7 @@ API.getQuestions = async () => {
 
   return questions.results;
 };
-/* eslint no-extend-native: ["error", { "exceptions": ["String"] }] */
+
 String.prototype.escapeUnicode = escapeUnicode();
 
 export default API;
