@@ -1,6 +1,5 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 // main  configuration for styles
-
 export const myStyle = {
     backgroundDark: '#222222',
     backgroundScore: '#555555',

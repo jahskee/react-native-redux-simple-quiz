@@ -1,8 +1,8 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 import { createStore, applyMiddleware } from "redux";
 import thunk from 'redux-thunk';
-
 import { createLogger } from 'redux-logger';
+
 import { getQuestions, updateData } from "../action/actions";
 import rootReducer from "../reducer/reducer";
 import API from "../../api-client/question";

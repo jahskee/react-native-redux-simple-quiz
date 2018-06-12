@@ -1,15 +1,14 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 import React from "react";
 import { Button, View, StyleSheet, Text } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
 
 import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./SettingScreen.styles";
 
-class SettingScreen extends React.Component {
+class SettingScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Settings",

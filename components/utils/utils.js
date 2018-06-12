@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 export const addKeys = (val, key) => ({ key: "" + key, ...val });
 
 export function escapeUnicode(){

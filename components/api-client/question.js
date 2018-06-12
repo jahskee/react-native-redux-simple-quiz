@@ -1,21 +1,24 @@
-/*jshint esversion: 6 */
-import { addKeys, escapeUnicode } from "../utils/utils";
+/* jshint esversion: 6 */
+import { addKeys, escapeUnicode } from '../utils/utils';
 
-API = {};
+const API = {};
 
 API.getQuestions = async () => {
-  response = await fetch(`https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean`);
-  if (response.status != 200)
-    throw `Server api error reponse.status=${response.status}`;
-  questions = await response.json();
-  
+  /* global fetch */
+  const response = await fetch('https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean');
+  const questions = await response.json();
+
   questions.results = questions.results
-                        .map(question => ({...question, Answer: null}))
-                        .map(addKeys)
-                        .map(question =>  ({...question, question: question.question.escapeUnicode().trim()}))   
+    .map(question => ({ ...question, Answer: null }))
+    .map(addKeys)
+    .map(question => ({
+      ...question,
+      question: question.question.escapeUnicode().trim(),
+    }));
+
   return questions.results;
 };
-
+/* eslint no-extend-native: ["error", { "exceptions": ["String"] }] */
 String.prototype.escapeUnicode = escapeUnicode();
 
 export default API;

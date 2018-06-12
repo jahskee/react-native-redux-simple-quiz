@@ -1,18 +1,15 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 import React from "react";
 import { View } from "react-native";
 import { Text, Button } from "react-native-elements";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { ConfirmDialog } from "react-native-simple-dialogs";
-import { 
-  updateData,
-  addAnswer,
-} from "../../../redux/action/actions";
 
-import { commonStyles } from "../../../_styles/commonStyles.js";
+import { updateData, addAnswer } from "../../../redux/action/actions";
+import { commonStyles } from "../../../_styles/commonStyles";
 import { myStyle } from "../../../_styles/myStyle";
-import { styles } from "./QuizScreen.styles.js";
+import { styles } from "./QuizScreen.styles";
 
 class QuizScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -21,40 +18,6 @@ class QuizScreen extends React.Component {
       headerTintColor: myStyle.primaryColor
     };
   };
-
-  render() {
-    const index = this.props.data.questionIndex;
-   // console.log(this.props.questions)
-    return (
-      <View style={styles.container}>
-        <View>
-          <Text style={styles.subTitle}>
-            {this.props.questions[index].category}
-          </Text>
-          <Text style={styles.subTitle}>
-            {this.props.data.questionIndex + 1 + " / 10"}
-          </Text>
-        </View>
-        <View style={styles.questionCard}>
-          <Text style={styles.questionText}>
-            {this.props.questions[index].question}
-          </Text>
-        </View>
-        <View style={{ flexDirection: "row", paddingBottom: 90 }}>
-          <Button
-            onPress={this.selectTrue}
-            buttonStyle={commonStyles.buttonShort}
-            title="True"
-          />
-          <Button
-            onPress={this.selectFalse}
-            buttonStyle={commonStyles.buttonShort}
-            title="False"
-          />
-        </View>
-      </View>
-    );
-  }
 
   selectTrue = async () => {
     await this.questionAnswered(true);
@@ -85,7 +48,46 @@ class QuizScreen extends React.Component {
       this.props.updateData({ questionIndex: index + 1 });
     }
   };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.subTitle}>
+            {this.props.questions[this.props.data.questionIndex].category}
+          </Text>
+          <Text style={styles.subTitle}>
+            {this.props.data.questionIndex + 1 + " / 10"}
+          </Text>
+        </View>
+        <View style={styles.questionCard}>
+          <Text style={styles.questionText}>
+            {this.props.questions[this.props.data.questionIndex].question}
+          </Text>
+        </View>
+        <View style={{ flexDirection: "row", paddingBottom: 90 }}>
+          <Button
+            onPress={this.selectTrue}
+            buttonStyle={commonStyles.buttonShort}
+            title="True"
+          />
+          <Button
+            onPress={this.selectFalse}
+            buttonStyle={commonStyles.buttonShort}
+            title="False"
+          />
+        </View>
+      </View>
+    );
+  }
 }
+
+// ----------- Prop-Types ------
+QuizScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  questions: PropTypes.array.isRequired,
+  answers: PropTypes.array.isRequired
+};
 
 // ---------- Setup Redux -------------
 const mapStateToProps = state => ({
@@ -94,12 +96,12 @@ const mapStateToProps = state => ({
   data: state.data
 });
 
-const mapDispatchToProps = { 
-  updateData, 
-  addAnswer,  
-};  
+const mapDispatchToProps = {
+  updateData,
+  addAnswer
+};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(QuizScreen);

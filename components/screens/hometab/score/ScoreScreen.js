@@ -1,16 +1,15 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 import React from "react";
 import { View, FlatList } from "react-native";
 import { Text, Button } from "react-native-elements";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { 
+import {
   clearAnswers,
   updateData,
-  getQuestions,
+  getQuestions
 } from "../../../redux/action/actions";
-
 import ScoreRow from "./blocks/ScoreRow";
 import { addKeys } from "../../../utils/utils";
 
@@ -18,12 +17,27 @@ import { commonStyles } from "../../../_styles/commonStyles";
 import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./ScoreScreen.styles";
 
-class ScoreScreen extends React.Component {
+class ScoreScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Result",
       headerTintColor: myStyle.primaryColor
     };
+  };
+
+  componentDidMount() {
+    let score = 0;
+    this.props.answers.forEach(answer => {
+      if (answer.isCorrect) score++;
+    });
+    this.props.updateData({ score });
+  };
+
+  navPlayAgain = async () => {
+    this.props.getQuestions();
+    this.props.clearAnswers();
+    this.props.updateData({ questionIndex: 0 });
+    this.props.navigation.navigate("QuizScreen");
   };
 
   render() {
@@ -47,22 +61,15 @@ class ScoreScreen extends React.Component {
       </View>
     );
   }
-
-  componentDidMount() {
-    let score = 0;
-    this.props.answers.forEach(answer => {
-      if (answer.isCorrect) score++;
-    });
-    this.props.updateData({ score });
-  }
-
-  navPlayAgain = async () => {
-    this.props.getQuestions();
-    this.props.clearAnswers();
-    this.props.updateData({ questionIndex: 0 });
-    this.props.navigation.navigate("QuizScreen");
-  };
 }
+
+// ----------- Prop-Types ------
+ScoreScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  questions: PropTypes.array.isRequired,
+  answers: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired
+};
 
 // ---------- Setup Redux -------------
 const mapStateToProps = state => ({
@@ -70,13 +77,13 @@ const mapStateToProps = state => ({
   answers: state.answers,
   data: state.data
 });
-const mapDispatchToProps = {  
-  clearAnswers, 
+const mapDispatchToProps = {
+  clearAnswers,
   updateData,
-  getQuestions, 
-};  
+  getQuestions
+};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ScoreScreen);

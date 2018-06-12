@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { myStyle } from "../../../_styles/myStyle";
 import { styles } from "./FontScreen.styles";
 
-class SettingScreen extends React.Component {
+class FontScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Fonts",
@@ -705,14 +705,4 @@ class SettingScreen extends React.Component {
   }
 }
 
-// ------- PropTypes ---------
-SettingScreen.propTypes = {
-  navigation: PropTypes.object.isRequired
-};
-
-// -------- Setup Redux --------
-const mapStateToProps = state => ({});
-export default connect(
-  mapStateToProps,
-  {}
-)(SettingScreen);
+export default FontScreen;

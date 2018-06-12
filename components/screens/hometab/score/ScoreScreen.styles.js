@@ -1,6 +1,7 @@
-/*jshint esversion: 6 */
-import { myStyle } from "../../../_styles/myStyle";
+/* jshint esversion: 6 */
 import { StyleSheet } from "react-native";
+import { myStyle } from "../../../_styles/myStyle";
+
 
 export const styles = StyleSheet.create({
   container: {

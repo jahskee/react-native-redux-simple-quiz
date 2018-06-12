@@ -1,21 +1,21 @@
-/*jshint esversion: 6 */
+/* jshint esversion: 6 */
 import React from "react";
 import { Text, View, Image } from "react-native";
 import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PropTypes from "prop-types";
-import {
-  clearAnswers, 
-  updateData,
-  getQuestions,
-} from "../../../redux/action/actions";
 import { connect } from "react-redux";
 
-import { commonStyles } from "../../../_styles/commonStyles.js";
+import {
+  clearAnswers,
+  updateData,
+  getQuestions
+} from "../../../redux/action/actions";
+import { commonStyles } from "../../../_styles/commonStyles";
 import { myStyle } from "../../../_styles/myStyle";
-import { styles } from "./HomeScreen.styles.js";
+import { styles } from "./HomeScreen.styles";
 
-class HomeScreen extends React.Component {
+class HomeScreen extends React.PureComponent {
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: "Home",
@@ -26,18 +26,15 @@ class HomeScreen extends React.Component {
     };
   };
 
+  logoImage = "https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/mind-512.png";
 
-  config = {
-    images: {
-      logo:
-        "https://cdn2.iconfinder.com/data/icons/basic-flat-icon-set/128/mind-512.png"
-    }
+  navToQuizScreen = async () => {
+    this.props.navigation.navigate("QuizScreen");
   };
 
   render() {
     return (
       <View style={styles.container}>
-
         <Text style={styles.title}>
           Welcome to the {"\n"}
           Trivia Challenge!
@@ -46,7 +43,7 @@ class HomeScreen extends React.Component {
         <Image
           style={{ width: 128, height: 128 }}
           source={{
-            uri: this.config.images.logo
+            uri: this.logoImage,
           }}
         />
 
@@ -68,17 +65,12 @@ class HomeScreen extends React.Component {
       </View>
     );
   }
-  /*
-  componentWillMount() {
-    this.props.getQuestions();
-    this.props.clearAnswers();
-    this.props.updateData({ questionIndex: 0 });
-  }*/
-
-  navToQuizScreen = async () => {   
-    this.props.navigation.navigate("QuizScreen");
-  };
 }
+
+// ----------- Prop-Types ------
+HomeScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
+};
 
 // ---------- Setup Redux -------------
 const mapStateToProps = state => ({
@@ -87,13 +79,13 @@ const mapStateToProps = state => ({
   data: state.data
 });
 
-const mapDispatchToProps = {  
-  clearAnswers, 
+const mapDispatchToProps = {
+  clearAnswers,
   updateData,
-  getQuestions,
-};  
+  getQuestions
+};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(HomeScreen);

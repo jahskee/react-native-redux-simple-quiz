@@ -1,8 +1,9 @@
 
+/* jshint esversion: 6 */
 import API from "../../api-client/question";
 
 /*
-Please Note: actions when it scales needs to be broken to different action files.
+Please Note: When action scales up, we need to break-down to different action files.
 */
 
 // action types
@@ -15,7 +16,7 @@ export const CLEAR_ANSWERS = "CLEAR_ANSWERS";
 export const UPDATE_DATA = "UPDATE_DATA";
 
 
-// regular actions
+// action creators
 export const addAnswer = answer => ({
   type: ADD_ANSWER,
   payload: answer
@@ -31,7 +32,6 @@ export const updateData = data => ({
   payload: data
 });
 
-// actions to request for questionns
 export const requestQuestions = () => ({
   type: REQUEST_QUESTIONS, 
 });
@@ -45,7 +45,7 @@ export const requestQuestionsError = () => ({
   type: REQUEST_QUESTIONS_ERROR,
 });
 
-// async actions thru action creators
+// async actions creators
 export const getQuestions = () => async dispatch => {   
   try {
     dispatch(requestQuestions())
