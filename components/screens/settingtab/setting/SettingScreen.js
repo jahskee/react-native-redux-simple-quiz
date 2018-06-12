@@ -33,7 +33,9 @@ SettingScreen.propTypes = {
 
 // -------- Setup Redux --------
 const mapStateToProps = state => ({});
+const mapDispatchToProps = {}
+
 export default connect(
   mapStateToProps,
-  {}
+  mapDispatchToProps,
 )(SettingScreen);

@@ -3,13 +3,12 @@ import React from "react";
 import { View, FlatList } from "react-native";
 import { Text, Button } from "react-native-elements";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
-import {
-  resetQuestions,
+
+import { 
   clearAnswers,
-  addKeysToAnswers,
-  updateData
+  updateData,
+  getQuestions,
 } from "../../../redux/action/actions";
 
 import ScoreRow from "./blocks/ScoreRow";
@@ -58,13 +57,10 @@ class ScoreScreen extends React.Component {
   }
 
   navPlayAgain = async () => {
-    const questions = await API.getQuestions();
-    this.props.resetQuestions(questions);
+    this.props.getQuestions();
     this.props.clearAnswers();
     this.props.updateData({ questionIndex: 0 });
-
     this.props.navigation.navigate("QuizScreen");
-    return;
   };
 }
 
@@ -74,12 +70,13 @@ const mapStateToProps = state => ({
   answers: state.answers,
   data: state.data
 });
+const mapDispatchToProps = {  
+  clearAnswers, 
+  updateData,
+  getQuestions, 
+};  
 
 export default connect(
   mapStateToProps,
-  {
-    resetQuestions,
-    clearAnswers,
-    updateData
-  }
+  mapDispatchToProps,
 )(ScoreScreen);

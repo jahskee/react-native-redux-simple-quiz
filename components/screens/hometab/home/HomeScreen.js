@@ -5,9 +5,9 @@ import { Button } from "react-native-elements";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PropTypes from "prop-types";
 import {
-  resetQuestions,
   clearAnswers, 
   updateData,
+  getQuestions,
 } from "../../../redux/action/actions";
 import { connect } from "react-redux";
 
@@ -68,13 +68,14 @@ class HomeScreen extends React.Component {
       </View>
     );
   }
-
-  navToQuizScreen = async () => {
-    const questions = await API.getQuestions();
-    this.props.resetQuestions(questions);
+  /*
+  componentWillMount() {
+    this.props.getQuestions();
     this.props.clearAnswers();
     this.props.updateData({ questionIndex: 0 });
+  }*/
 
+  navToQuizScreen = async () => {   
     this.props.navigation.navigate("QuizScreen");
   };
 }
@@ -86,11 +87,13 @@ const mapStateToProps = state => ({
   data: state.data
 });
 
+const mapDispatchToProps = {  
+  clearAnswers, 
+  updateData,
+  getQuestions,
+};  
+
 export default connect(
   mapStateToProps,
-  {
-    resetQuestions,
-    clearAnswers, 
-    updateData,
-  }
+  mapDispatchToProps,
 )(HomeScreen);

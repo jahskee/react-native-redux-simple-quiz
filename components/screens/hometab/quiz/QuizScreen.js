@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { ConfirmDialog } from "react-native-simple-dialogs";
 import { 
   updateData,
-  addAnswer
+  addAnswer,
 } from "../../../redux/action/actions";
 
 import { commonStyles } from "../../../_styles/commonStyles.js";
@@ -22,16 +22,14 @@ class QuizScreen extends React.Component {
     };
   };
 
-  state = {
-    dialogVisible: false
-  };
-
   render() {
+    const index = this.props.data.questionIndex;
+   // console.log(this.props.questions)
     return (
       <View style={styles.container}>
         <View>
           <Text style={styles.subTitle}>
-            {this.props.questions[this.props.data.questionIndex].category}
+            {this.props.questions[index].category}
           </Text>
           <Text style={styles.subTitle}>
             {this.props.data.questionIndex + 1 + " / 10"}
@@ -39,7 +37,7 @@ class QuizScreen extends React.Component {
         </View>
         <View style={styles.questionCard}>
           <Text style={styles.questionText}>
-            {this.props.questions[this.props.data.questionIndex].question}
+            {this.props.questions[index].question}
           </Text>
         </View>
         <View style={{ flexDirection: "row", paddingBottom: 90 }}>
@@ -57,7 +55,7 @@ class QuizScreen extends React.Component {
       </View>
     );
   }
- 
+
   selectTrue = async () => {
     await this.questionAnswered(true);
   };
@@ -96,10 +94,12 @@ const mapStateToProps = state => ({
   data: state.data
 });
 
+const mapDispatchToProps = { 
+  updateData, 
+  addAnswer,  
+};  
+
 export default connect(
   mapStateToProps,
-  { 
-    updateData,
-    addAnswer
-  }
+  mapDispatchToProps,
 )(QuizScreen);
